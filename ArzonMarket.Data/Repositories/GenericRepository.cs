@@ -1,4 +1,7 @@
-﻿using ArzonMarket.Data.IRepositories;
+﻿using ArzonMarket.Data.Contexts;
+using ArzonMarket.Data.IRepositories;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,29 +13,49 @@ namespace ArzonMarket.Data.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        public Task<T> CreateAsync(T entity)
+        internal ArzonMarketDbContext dbContext;
+        internal DbSet<T> dbSet;
+
+        public GenericRepository(ArzonMarketDbContext dbContext)
         {
-            throw new NotImplementedException();
+            this.dbContext = dbContext;
+            this.dbSet = dbContext.Set<T>();
         }
 
-        public Task<bool> DeleteAsync(Expression<Func<T, bool>> predicate)
+        public async Task<T> CreateAsync(T entity)
         {
-            throw new NotImplementedException();
+            EntityEntry entry = await dbSet.AddAsync(entity);
+
+            return (T)entry.Entity;
         }
 
-        public Task<IQueryable<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null)
+        public async Task<bool> DeleteAsync(Expression<Func<T, bool>> predicate)
         {
-            throw new NotImplementedException();
+            T entity = await dbSet.FirstOrDefaultAsync(predicate);
+
+            if (entity == null)
+                return false;
+            
+            dbSet.Remove(entity);
+
+            return true;
+        }
+
+        public async Task<IQueryable<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null)
+        {
+            return predicate is null ? dbSet : dbSet.Where(predicate);
         }
 
         public Task<T> GetAsync(Expression<Func<T, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return dbSet.FirstOrDefaultAsync(predicate);
         }
 
-        public Task<T> UpdateAsync(T entity)
+        public async Task<T> UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+            var entry = dbSet.Update(entity);
+
+            return entry.Entity;
         }
     }
 }
