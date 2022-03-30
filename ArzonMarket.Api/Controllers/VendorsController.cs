@@ -5,7 +5,7 @@ namespace ArzonMarket.Api.Controllers
 {
     [ApiController]
     [Route("Api/[controller]")]
-    public class VendorsController
+    public class VendorsController : ControllerBase
     {
         private readonly IVendorService vendorService;
 

@@ -5,7 +5,7 @@ namespace ArzonMarket.Api.Controllers
 {
     [ApiController]
     [Route("Api/[controller]")]
-    public class WorkersContoller
+    public class WorkersContoller : ControllerBase
     {
         private IWorkerService workerService;
 
