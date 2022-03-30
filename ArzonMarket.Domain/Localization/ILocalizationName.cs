@@ -13,4 +13,5 @@ namespace ArzonMarket.Domain.Localization
         string NameRu { get; set; }
 
         string NameEn { get; set; }
+    }
 }

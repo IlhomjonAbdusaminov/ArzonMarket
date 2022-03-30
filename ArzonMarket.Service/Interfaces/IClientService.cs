@@ -1,5 +1,6 @@
 ﻿using ArzonMarket.Domain.Commons;
 using ArzonMarket.Domain.Entities.Clients;
+using ArzonMarket.Service.DTOs.ForCreationDTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace ArzonMarket.Service.Interfaces
 {
     public interface IClientService
     {
-        Task<BaseResponse<Client>> CreateAsync(Client entity);
+        Task<BaseResponse<Client>> CreateAsync(ClientForCreationDto clientDto);
 
         Task<BaseResponse<bool>> DeleteAsync(Expression<Func<Client, bool>> predicate);
 

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ArzonMarket.Data\ArzonMarket.Data.csproj" />
     <ProjectReference Include="..\ArzonMarket.Domain\ArzonMarket.Domain.csproj" />
   </ItemGroup>

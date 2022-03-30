@@ -1,7 +1,9 @@
 ﻿using ArzonMarket.Data.IRepositories;
 using ArzonMarket.Domain.Commons;
 using ArzonMarket.Domain.Entities.Clients;
+using ArzonMarket.Service.DTOs.ForCreationDTOs;
 using ArzonMarket.Service.Interfaces;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,15 +16,36 @@ namespace ArzonMarket.Service.Services
     public class ClientService : IClientService
     {
         private readonly IUnitOfWork unitOfWork;
+        private readonly IMapper mapper;
 
-        public ClientService(IUnitOfWork unitOfWork)
+        public ClientService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
         }
 
-        public Task<BaseResponse<Client>> CreateAsync(Client entity)
+        public async Task<BaseResponse<Client>> CreateAsync(ClientForCreationDto clientDto)
         {
-            throw new NotImplementedException();
+            BaseResponse<Client> response = new BaseResponse<Client>();
+
+            var existClient = await unitOfWork.Clients.GetAsync(p => p.PhoneNumber == clientDto.PhoneNumber);
+
+            if(existClient != null)
+            {
+                response.Error = new ErrorResponse(400, "User is exist");
+                return response;
+            }
+
+            var mapperClient = mapper.Map<Client>(clientDto);
+
+            var result = await unitOfWork.Clients.CreateAsync(mapperClient);
+
+            await unitOfWork.SaveChangesAsync();
+
+            response.Data = result;
+
+            return response;
+
         }
 
         public Task<BaseResponse<bool>> DeleteAsync(Expression<Func<Client, bool>> predicate)
