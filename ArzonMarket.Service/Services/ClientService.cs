@@ -1,4 +1,6 @@
-﻿using ArzonMarket.Domain.Entities.Clients;
+﻿using ArzonMarket.Data.IRepositories;
+using ArzonMarket.Domain.Commons;
+using ArzonMarket.Domain.Entities.Clients;
 using ArzonMarket.Service.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,28 +13,34 @@ namespace ArzonMarket.Service.Services
 {
     public class ClientService : IClientService
     {
+        private readonly IUnitOfWork unitOfWork;
 
-        public Task<Client> CreateAsync(Client entity)
+        public ClientService(IUnitOfWork unitOfWork)
+        {
+            this.unitOfWork = unitOfWork;
+        }
+
+        public Task<BaseResponse<Client>> CreateAsync(Client entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(Expression<Func<Client, bool>> predicate)
+        public Task<BaseResponse<bool>> DeleteAsync(Expression<Func<Client, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IQueryable<Client>> GetAllAsync(Expression<Func<Client, bool>> predicate = null)
+        public Task<BaseResponse<IQueryable<Client>>> GetAllAsync(Expression<Func<Client, bool>> predicate = null)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Client> GetAsync(Expression<Func<Client, bool>> predicate)
+        public Task<BaseResponse<Client>> GetAsync(Expression<Func<Client, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Client> UpdateAsync(Client entity)
+        public Task<BaseResponse<Client>> UpdateAsync(Client entity)
         {
             throw new NotImplementedException();
         }

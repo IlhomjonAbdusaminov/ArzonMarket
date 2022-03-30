@@ -1,4 +1,5 @@
-﻿using ArzonMarket.Domain.Entities.Clients;
+﻿using ArzonMarket.Domain.Commons;
+using ArzonMarket.Domain.Entities.Clients;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,14 @@ namespace ArzonMarket.Service.Interfaces
 {
     public interface IClientService
     {
-        Task<Client> CreateAsync(Client entity);
+        Task<BaseResponse<Client>> CreateAsync(Client entity);
 
-        Task<bool> DeleteAsync(Expression<Func<Client, bool>> predicate);
+        Task<BaseResponse<bool>> DeleteAsync(Expression<Func<Client, bool>> predicate);
 
-        Task<Client> UpdateAsync(Client entity);
+        Task<BaseResponse<Client>> UpdateAsync(Client entity);
 
-        Task<IQueryable<Client>> GetAllAsync(Expression<Func<Client, bool>> predicate = null);
+        Task<BaseResponse<IQueryable<Client>>> GetAllAsync(Expression<Func<Client, bool>> predicate = null);
 
-        Task<Client> GetAsync(Expression<Func<Client, bool>> predicate);
+        Task<BaseResponse<Client>> GetAsync(Expression<Func<Client, bool>> predicate);
     }
 }

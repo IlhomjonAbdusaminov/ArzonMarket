@@ -1,4 +1,5 @@
-﻿using ArzonMarket.Domain.Entities.Workers;
+﻿using ArzonMarket.Domain.Commons;
+using ArzonMarket.Domain.Entities.Workers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,14 @@ namespace ArzonMarket.Service.Interfaces
 {
     public interface IWorkerService
     {
-        Task<Worker> CreateAsync(Worker entity);
+        Task<BaseResponse<Worker>> CreateAsync(Worker entity);
 
-        Task<bool> DeleteAsync(Expression<Func<Worker, bool>> predicate);
+        Task<BaseResponse<bool>> DeleteAsync(Expression<Func<Worker, bool>> predicate);
 
-        Task<Worker> UpdateAsync(Worker entity);
+        Task<BaseResponse<Worker>> UpdateAsync(Worker entity);
 
-        Task<IQueryable<Worker>> GetAllAsync(Expression<Func<Worker, bool>> predicate = null);
+        Task<BaseResponse<IQueryable<Worker>>> GetAllAsync(Expression<Func<Worker, bool>> predicate = null);
 
-        Task<Worker> GetAsync(Expression<Func<Worker, bool>> predicate);
+        Task<BaseResponse<Worker>> GetAsync(Expression<Func<Worker, bool>> predicate);
     }
 }

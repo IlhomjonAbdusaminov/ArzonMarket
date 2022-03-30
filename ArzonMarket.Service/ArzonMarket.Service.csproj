@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ArzonMarket.Data\ArzonMarket.Data.csproj" />
     <ProjectReference Include="..\ArzonMarket.Domain\ArzonMarket.Domain.csproj" />
   </ItemGroup>
 

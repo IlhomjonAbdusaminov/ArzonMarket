@@ -1,4 +1,5 @@
-﻿using ArzonMarket.Domain.Entities.Vendors;
+﻿using ArzonMarket.Domain.Commons;
+using ArzonMarket.Domain.Entities.Vendors;
 using ArzonMarket.Service.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,27 +12,27 @@ namespace ArzonMarket.Service.Services
 {
     public class VendorService : IVendorService
     {
-        public Task<Vendor> CreateAsync(Vendor entity)
+        public Task<BaseResponse<Vendor>> CreateAsync(Vendor entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(Expression<Func<Vendor, bool>> predicate)
+        public Task<BaseResponse<bool>> DeleteAsync(Expression<Func<Vendor, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IQueryable<Vendor>> GetAllAsync(Expression<Func<Vendor, bool>> predicate = null)
+        public Task<BaseResponse<IQueryable<Vendor>>> GetAllAsync(Expression<Func<Vendor, bool>> predicate = null)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Vendor> GetAsync(Expression<Func<Vendor, bool>> predicate)
+        public Task<BaseResponse<Vendor>> GetAsync(Expression<Func<Vendor, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Vendor> UpdateAsync(Vendor entity)
+        public Task<BaseResponse<Vendor>> UpdateAsync(Vendor entity)
         {
             throw new NotImplementedException();
         }

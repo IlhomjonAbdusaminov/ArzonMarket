@@ -1,4 +1,5 @@
-﻿using ArzonMarket.Domain.Entities.Workers;
+﻿using ArzonMarket.Domain.Commons;
+using ArzonMarket.Domain.Entities.Workers;
 using ArzonMarket.Service.Interfaces;
 using System;
 using System.Linq;
@@ -9,27 +10,27 @@ namespace ArzonMarket.Service.Services
 {
     public class WorkerService : IWorkerService
     {
-        public Task<Worker> CreateAsync(Worker entity)
+        public Task<BaseResponse<Worker>> CreateAsync(Worker entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(Expression<Func<Worker, bool>> predicate)
+        public Task<BaseResponse<bool>> DeleteAsync(Expression<Func<Worker, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IQueryable<Worker>> GetAllAsync(Expression<Func<Worker, bool>> predicate = null)
+        public Task<BaseResponse<IQueryable<Worker>>> GetAllAsync(Expression<Func<Worker, bool>> predicate = null)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Worker> GetAsync(Expression<Func<Worker, bool>> predicate)
+        public Task<BaseResponse<Worker>> GetAsync(Expression<Func<Worker, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Worker> UpdateAsync(Worker entity)
+        public Task<BaseResponse<Worker>> UpdateAsync(Worker entity)
         {
             throw new NotImplementedException();
         }

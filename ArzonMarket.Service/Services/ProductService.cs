@@ -1,4 +1,5 @@
-﻿using ArzonMarket.Domain.Entities.Products;
+﻿using ArzonMarket.Domain.Commons;
+using ArzonMarket.Domain.Entities.Products;
 using ArzonMarket.Service.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,29 +10,29 @@ using System.Threading.Tasks;
 
 namespace ArzonMarket.Service.Services
 {
-    internal class ProductService : IProductService
+    public class ProductService : IProductService
     {
-        public Task<Product> CreateAsync(Product entity)
+        public Task<BaseResponse<Product>> CreateAsync(Product entity)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAsync(Expression<Func<Product, bool>> predicate)
+        public Task<BaseResponse<bool>> DeleteAsync(Expression<Func<Product, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IQueryable<Product>> GetAllAsync(Expression<Func<Product, bool>> predicate = null)
+        public Task<BaseResponse<IQueryable<Product>>> GetAllAsync(Expression<Func<Product, bool>> predicate = null)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Product> GetAsync(Expression<Func<Product, bool>> predicate)
+        public Task<BaseResponse<Product>> GetAsync(Expression<Func<Product, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Product> UpdateAsync(Product entity)
+        public Task<BaseResponse<Product>> UpdateAsync(Product entity)
         {
             throw new NotImplementedException();
         }

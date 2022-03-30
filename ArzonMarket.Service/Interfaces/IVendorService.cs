@@ -1,4 +1,5 @@
-﻿using ArzonMarket.Domain.Entities.Vendors;
+﻿using ArzonMarket.Domain.Commons;
+using ArzonMarket.Domain.Entities.Vendors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,14 @@ namespace ArzonMarket.Service.Interfaces
 {
     public interface IVendorService
     {
-        Task<Vendor> CreateAsync(Vendor entity);
+        Task<BaseResponse<Vendor>> CreateAsync(Vendor entity);
 
-        Task<bool> DeleteAsync(Expression<Func<Vendor, bool>> predicate);
+        Task<BaseResponse<bool>> DeleteAsync(Expression<Func<Vendor, bool>> predicate);
 
-        Task<Vendor> UpdateAsync(Vendor entity);
+        Task<BaseResponse<Vendor>> UpdateAsync(Vendor entity);
 
-        Task<IQueryable<Vendor>> GetAllAsync(Expression<Func<Vendor, bool>> predicate = null);
+        Task<BaseResponse<IQueryable<Vendor>>> GetAllAsync(Expression<Func<Vendor, bool>> predicate = null);
 
-        Task<Vendor> GetAsync(Expression<Func<Vendor, bool>> predicate);
+        Task<BaseResponse<Vendor>> GetAsync(Expression<Func<Vendor, bool>> predicate);
     }
 }
