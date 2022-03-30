@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArzonMarket.Service.Interfaces
+namespace ArzonMarket.Domain.Entities.Products
 {
-    public interface IVendorService
+    internal class Product
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ArzonMarket.Service.Interfaces
 {
-    public class IClientService
+    public interface IClientService
     {
     }
 }

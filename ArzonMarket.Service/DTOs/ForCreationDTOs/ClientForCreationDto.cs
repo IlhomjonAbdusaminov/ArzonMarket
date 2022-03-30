@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArzonMarket.Service.DTOs
+namespace ArzonMarket.Service.DTOs.ForCreationDTOs
 {
-    public class WorkerForCreationDto
+    public class ClientForCreationDto
     {
         [Required]
         public string FirstName { get; set; }

@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ArzonMarket.Service.DTOs
+namespace ArzonMarket.Service.DTOs.ForCreationDTOs
 {
-    public class ClientForCreationDto
+    public class VendorForCreationDto
     {
         [Required]
         public string FirstName { get; set; }
@@ -18,7 +14,7 @@ namespace ArzonMarket.Service.DTOs
         [Required]
         public string PhoneNumber { get; set; }
 
-        [Required]
+        [Required ]
         public DateTime BirthDate { get; set; }
     }
 }
