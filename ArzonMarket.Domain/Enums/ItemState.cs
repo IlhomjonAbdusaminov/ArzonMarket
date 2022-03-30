@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ArzonMarket.Domain.Enums
 {
-    public class ItemState
+    public enum ItemState
     {
+        Created = 1,
+        Updated,
+        Deleted,
     }
 }

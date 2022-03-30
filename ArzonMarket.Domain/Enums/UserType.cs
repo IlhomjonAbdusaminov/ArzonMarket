@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ArzonMarket.Domain.Enums
 {
-    public class UserType
+    public enum UserType
     {
     }
 }
