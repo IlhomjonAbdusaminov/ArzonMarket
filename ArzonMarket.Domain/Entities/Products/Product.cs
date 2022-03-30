@@ -1,10 +1,7 @@
 ﻿using ArzonMarket.Domain.Commons;
 using ArzonMarket.Domain.Enums;
+using ArzonMarket.Domain.Enums.Products;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ArzonMarket.Domain.Entities.Products
 {
@@ -16,14 +13,24 @@ namespace ArzonMarket.Domain.Entities.Products
 
         public decimal Price { get; set; }
 
+        /// <summary>
+        /// Product unit (kgs, pcs)
+        /// </summary>
+        public ProductUnit Unit { get; set; } 
 
+        /// <summary>
+        /// Product type (fruit, drinks...) 
+        /// </summary>
+        public ProductType Type { get; set; }
+
+        public float Residue { get; set; }
 
         public DateTime CreatedAt { get; set; }
         
         public DateTime? UpdatedAt { get; set; }
         
         public Guid? UpdatedBy { get; set; }
-        
-        public ItemState State { get; set; }
+
+        public ItemState State { get; set; } = ItemState.Created;
     }
 }
