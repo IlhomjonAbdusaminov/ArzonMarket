@@ -8,4 +8,8 @@
     <Folder Include="Mappers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ArzonMarket.Domain\ArzonMarket.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
