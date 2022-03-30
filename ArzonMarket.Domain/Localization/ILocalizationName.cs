@@ -8,5 +8,9 @@ namespace ArzonMarket.Domain.Localization
 {
     public class ILocalizationName
     {
-    }
+        string NameUz { get; set; }
+
+        string NameRu { get; set; }
+
+        string NameEn { get; set; }
 }
