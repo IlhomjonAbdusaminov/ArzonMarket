@@ -1,4 +1,5 @@
 ﻿using ArzonMarket.Domain.Commons;
+using ArzonMarket.Domain.Configurations;
 using ArzonMarket.Domain.Entities.Clients;
 using ArzonMarket.Service.DTOs.ForCreationDTOs;
 using System;
@@ -16,9 +17,9 @@ namespace ArzonMarket.Service.Interfaces
 
         Task<BaseResponse<bool>> DeleteAsync(Expression<Func<Client, bool>> predicate);
 
-        Task<BaseResponse<Client>> UpdateAsync(Client entity);
+        Task<BaseResponse<Client>> UpdateAsync(ClientForCreationDto clientDto);
 
-        Task<BaseResponse<IQueryable<Client>>> GetAllAsync(Expression<Func<Client, bool>> predicate = null);
+        Task<BaseResponse<IQueryable<Client>>> GetAllAsync(PaginationParams @params, Expression<Func<Client, bool>> predicate = null);
 
         Task<BaseResponse<Client>> GetAsync(Expression<Func<Client, bool>> predicate);
     }

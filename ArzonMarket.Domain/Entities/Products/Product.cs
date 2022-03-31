@@ -2,6 +2,7 @@
 using ArzonMarket.Domain.Enums;
 using ArzonMarket.Domain.Enums.Products;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ArzonMarket.Domain.Entities.Products
 {
@@ -9,6 +10,7 @@ namespace ArzonMarket.Domain.Entities.Products
     {
         public Guid Id { get; set; }
 
+        [MaxLength(50)]
         public string Name { get; set; }
 
         public decimal Price { get; set; }

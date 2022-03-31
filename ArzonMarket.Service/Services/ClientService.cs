@@ -1,7 +1,10 @@
 ﻿using ArzonMarket.Data.IRepositories;
 using ArzonMarket.Domain.Commons;
+using ArzonMarket.Domain.Configurations;
 using ArzonMarket.Domain.Entities.Clients;
+using ArzonMarket.Domain.Enums;
 using ArzonMarket.Service.DTOs.ForCreationDTOs;
+using ArzonMarket.Service.Extensions;
 using ArzonMarket.Service.Interfaces;
 using AutoMapper;
 using System;
@@ -48,24 +51,85 @@ namespace ArzonMarket.Service.Services
 
         }
 
-        public Task<BaseResponse<bool>> DeleteAsync(Expression<Func<Client, bool>> predicate)
+        public async Task<BaseResponse<bool>> DeleteAsync(Expression<Func<Client, bool>> predicate)
         {
-            throw new NotImplementedException();
+            BaseResponse<bool> response = new BaseResponse<bool>();
+
+            var existClient = await unitOfWork.Clients.GetAsync(predicate);
+
+            if(existClient is null)
+            {
+                response.Error = new ErrorResponse(404, "User not found");
+                return response;
+            }
+
+            existClient.Delete();
+
+            var result = await unitOfWork.Clients.UpdateAsync(existClient);
+
+            await unitOfWork.SaveChangesAsync();
+
+            response.Data = true;
+
+            return response;
         }
 
-        public Task<BaseResponse<IQueryable<Client>>> GetAllAsync(Expression<Func<Client, bool>> predicate = null)
+        public async Task<BaseResponse<IQueryable<Client>>> GetAllAsync(PaginationParams @params, Expression<Func<Client, bool>> predicate = null)
         {
-            throw new NotImplementedException();
+            var response = new BaseResponse<IQueryable<Client>>();
+
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            
+            var clients = await unitOfWork.Clients.GetAllAsync(predicate);
+
+            response.Data = clients.ToPagedList(@params);
+
+            return response;
         }
 
-        public Task<BaseResponse<Client>> GetAsync(Expression<Func<Client, bool>> predicate)
+        public async Task<BaseResponse<Client>> GetAsync(Expression<Func<Client, bool>> predicate)
         {
-            throw new NotImplementedException();
+            var response = new BaseResponse<Client>();
+
+            var client = await unitOfWork.Clients.GetAsync(predicate);
+
+            if(client is null)
+            {
+                response.Error = new ErrorResponse(404, "Not Found");
+                return response;
+            }
+
+            response.Data = client;
+
+            return response;
         }
 
-        public Task<BaseResponse<Client>> UpdateAsync(Client entity)
+        public async Task<BaseResponse<Client>> UpdateAsync(Guid id, ClientForCreationDto clientDto)
         {
-            throw new NotImplementedException();
+            var response = new BaseResponse<Client>();
+
+            var client = await unitOfWork.Clients.GetAsync(p => p.Id == id && p.State != ItemState.Deleted);
+
+            if(client is null)
+            {
+                response.Error = new ErrorResponse(404, "Client not found");
+                return response;
+            }
+            
+            client.FirstName = clientDto.FirstName;
+            client.LastName = clientDto.LastName;
+            client.PhoneNumber = clientDto.PhoneNumber;
+            client.Login = clientDto.Login;
+            client.Password = clientDto.Password;
+            client.Update();
+
+            var result = await unitOfWork.Clients.UpdateAsync(client);
+
+            await unitOfWork.SaveChangesAsync();
+
+            response.Data = result;
+
+            return response;
         }
     }
 }

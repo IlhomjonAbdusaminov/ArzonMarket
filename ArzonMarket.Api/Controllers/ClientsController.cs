@@ -1,8 +1,11 @@
 ﻿using ArzonMarket.Domain.Commons;
+using ArzonMarket.Domain.Configurations;
 using ArzonMarket.Domain.Entities.Clients;
+using ArzonMarket.Domain.Enums;
 using ArzonMarket.Service.DTOs.ForCreationDTOs;
 using ArzonMarket.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace ArzonMarket.Api.Controllers
@@ -24,6 +27,30 @@ namespace ArzonMarket.Api.Controllers
             var result = await clientService.CreateAsync(clientDto);
 
             return StatusCode(result.Code ?? result.Error.Code.Value, result);
+        }
+
+        [HttpGet] 
+        public async Task<ActionResult<BaseResponse<Client>>> Get([FromQuery] string login, [FromQuery] string password)
+        {
+            var result = await clientService.GetAsync(p => p.Login == login && p.Password == password);
+
+            return StatusCode(result.Code ?? result.Code.Value, result);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<BaseResponse<Client>>> GetAll([FromQuery] PaginationParams @params)
+        {
+            var results = await clientService.GetAllAsync(@params);
+
+            return StatusCode(results.Code ?? results.Code.Value, results);
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult<BaseResponse<bool>>> Delete(string login, string password)
+        {
+            var result = await clientService.DeleteAsync(p => p.Login == login && p.Password == password && p.State != ItemState.Deleted);
+
+            return StatusCode(result.Code ?? result.Code.Value, result);
         }
     }
 }

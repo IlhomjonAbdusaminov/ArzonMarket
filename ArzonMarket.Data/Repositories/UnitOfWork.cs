@@ -22,7 +22,6 @@ namespace ArzonMarket.Data.Repositories
             Workers = new WorkerRepository(dbContext);
         }
 
-
         public IClientRepository Clients { get; private set; }
 
         public IProductRepository Products { get; private set; }
