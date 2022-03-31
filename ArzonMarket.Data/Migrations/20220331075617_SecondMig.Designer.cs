@@ -3,15 +3,17 @@ using System;
 using ArzonMarket.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ArzonMarket.Data.Migrations
 {
     [DbContext(typeof(ArzonMarketDbContext))]
-    partial class ArzonMarketDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220331075617_SecondMig")]
+    partial class SecondMig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -32,7 +32,7 @@ namespace ArzonMarket.Api
         {
             services.AddDbContext<ArzonMarketDbContext>(options => {
 
-                options.UseSqlServer(Configuration.GetConnectionString("ArzonMarket")); 
+                options.UseNpgsql(Configuration.GetConnectionString("ArzonMarket")); 
             });
 
             services.AddControllers().AddNewtonsoftJson();
