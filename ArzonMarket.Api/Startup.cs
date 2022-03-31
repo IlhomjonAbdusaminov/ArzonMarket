@@ -1,3 +1,4 @@
+using ArzonMarket.Api.Extensions;
 using ArzonMarket.Data.Contexts;
 using ArzonMarket.Service.Mappers;
 using Microsoft.AspNetCore.Builder;
@@ -29,26 +30,29 @@ namespace ArzonMarket.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ArzonMarketDbContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("ArzonMarket"));
+            services.AddDbContext<ArzonMarketDbContext>(options => {
+
+                options.UseSqlServer(Configuration.GetConnectionString("ArzonMarket")); 
             });
 
-            services.AddAutoMapper(typeof(MappingProfile));
+            services.AddControllers().AddNewtonsoftJson();
 
-      
-
-            services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ArzonMarket.Api", Version = "v1" });
-            });
+            }); 
+
+            services.AddHttpContextAccessor();
+
+            services.AddAutoMapper(typeof(MappingProfile));
+
+            services.AddCustomServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment() || env.IsDevelopment())
+            if (env.IsDevelopment() || env.IsProduction())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();

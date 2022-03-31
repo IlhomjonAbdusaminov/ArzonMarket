@@ -104,11 +104,11 @@ namespace ArzonMarket.Service.Services
             return response;
         }
 
-        public async Task<BaseResponse<Client>> UpdateAsync(Guid id, ClientForCreationDto clientDto)
+        public async Task<BaseResponse<Client>> UpdateAsync(string login, string password, ClientForCreationDto clientDto)
         {
             var response = new BaseResponse<Client>();
 
-            var client = await unitOfWork.Clients.GetAsync(p => p.Id == id && p.State != ItemState.Deleted);
+            var client = await unitOfWork.Clients.GetAsync(p => p.Login == login && p.Password == password && p.State != ItemState.Deleted);
 
             if(client is null)
             {

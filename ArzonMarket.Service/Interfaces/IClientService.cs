@@ -17,7 +17,7 @@ namespace ArzonMarket.Service.Interfaces
 
         Task<BaseResponse<bool>> DeleteAsync(Expression<Func<Client, bool>> predicate);
 
-        Task<BaseResponse<Client>> UpdateAsync(ClientForCreationDto clientDto);
+        Task<BaseResponse<Client>> UpdateAsync(string login, string password, ClientForCreationDto clientDto);
 
         Task<BaseResponse<IQueryable<Client>>> GetAllAsync(PaginationParams @params, Expression<Func<Client, bool>> predicate = null);
 

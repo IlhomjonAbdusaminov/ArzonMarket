@@ -29,8 +29,8 @@ namespace ArzonMarket.Api.Controllers
             return StatusCode(result.Code ?? result.Error.Code.Value, result);
         }
 
-        [HttpGet] 
-        public async Task<ActionResult<BaseResponse<Client>>> Get([FromQuery] string login, [FromQuery] string password)
+        [HttpGet("All")]
+        public async Task<ActionResult<BaseResponse<Client>>> Get([FromForm] string login, [FromForm] string password)
         {
             var result = await clientService.GetAsync(p => p.Login == login && p.Password == password);
 
