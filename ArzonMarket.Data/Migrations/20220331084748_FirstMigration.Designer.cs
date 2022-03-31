@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ArzonMarket.Data.Migrations
 {
     [DbContext(typeof(ArzonMarketDbContext))]
-    [Migration("20220331075910_Mig")]
-    partial class Mig
+    [Migration("20220331084748_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
